@@ -18,10 +18,4 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.SSH_PORT }}
-        script: |
-          cd ~/www/github-actions/main/
-          git checkout -f
-          git pull origin main
-          php -r "file_exists('.env') || copy('.env.example', '.env');"
-          php -d disable_functions= ~/www/github-actions/main/composer.phar install --no-interaction --prefer-dist --optimize-autoloader
-          php artisan optimize
+        script: "cd ~/www/github-actions/main/ && .deploy.sh"
