@@ -23,5 +23,5 @@ jobs:
           git checkout -f
           git pull origin main
           php -r "file_exists('.env') || copy('.env.example', '.env');"
-          php -d disable_functions= ~/www/composer.phar install --no-interaction --prefer-dist --optimize-autoloader
+          php -d disable_functions= ~/www/github-actions/main/composer.phar install --no-interaction --prefer-dist --optimize-autoloader
           php artisan optimize
