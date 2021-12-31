@@ -1,4 +1,4 @@
-on: 
+on:
   push:
     branches:
       - main
@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
-    
+
     - name: 📂 Deploy Files
       uses: appleboy/ssh-action@master
       with:
@@ -20,5 +20,8 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd ~/www/github-actions/main/
-          git checkout -f 
+          git checkout -f
           git pull origin main
+          php -r "file_exists('.env') || copy('.env.example', '.env');"
+          php composer.phar install --no-interaction --prefer-dist --optimize-autoloader
+          php artisan optimize
