@@ -20,5 +20,4 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd /www/github-actions/main/
-          git checkout -f 
-          git pull
+          touch prueba.txt
