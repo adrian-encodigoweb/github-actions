@@ -21,4 +21,4 @@ jobs:
         script: |
           cd ~/www/github-actions/main/
           git checkout -f 
-          git pull
+          git pull origin main
