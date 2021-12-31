@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: 🚀 Deploy Main
+name: 🚀 Deploy Production
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -11,10 +11,13 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
     
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+    - name: 📂 Deploy Files
+      uses: appleboy/ssh-action@main
       with:
-        server: encodigoweb.net
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
-        server-dir: /www/github-actions/main/
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        script: |
+          cd /www/github-actions/main/
+          git checkout -f 
+          git pull
