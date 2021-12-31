@@ -23,5 +23,5 @@ jobs:
           git checkout -f
           git pull origin main
           php -r "file_exists('.env') || copy('.env.example', '.env');"
-          php composer install --no-interaction --prefer-dist --optimize-autoloader
+          composer install --no-interaction --prefer-dist --optimize-autoloader
           php artisan optimize
