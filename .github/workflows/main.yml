@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
     
     - name: 📂 Deploy Files
-      uses: appleboy/ssh-action@main
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
